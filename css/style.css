@@ -5,7 +5,7 @@
   position: relative;
   border: 1px solid #dadada;
   border-radius: 3px;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   justify-content: center; }
   .autocomplete__container input {

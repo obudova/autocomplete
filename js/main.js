@@ -10,5 +10,6 @@ let data,
         dataJson = Object.keys(result).map(key => result[key]);
         //console.log(dataJson);
         let autocomplete = new Autocomplete(dataJson, 'input.autocomplete');
+        let autocmplete2 = new Autocomplete(dataJson, 'input.autocomplete2');
 
     });

@@ -93,7 +93,7 @@ class Autocomplete{
         let isUnderAutomplete = false;
         while (elem.parentNode){
             if(elem.classList.contains("autocomplete__container")){
-                console.log('autocomplete');
+                // console.log('autocomplete');
                 isUnderAutomplete=true;
                 return
             }
