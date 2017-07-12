@@ -1,38 +1,153 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  background-color: #dee5e8;
+  color: #798ca7;
+  font-family: 'Muli', sans-serif; }
+
+.container {
+  width: 1200px;
+  margin: 0 auto; }
+
+.component-library {
+  background-color: #dee5e8;
+  color: #798ca7; }
+  .component-library h3 {
+    color: #798ca7;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #798ca7;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-size: 26px; }
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 100%; } }
 .autocomplete__container {
+  display: inline-block;
+  margin-right: 65px; }
+
+.chips__container {
+  display: inline-block; }
+  .chips__container .input-group {
+    border: none;
+    border-bottom: 1px solid #dadada;
+    background-color: transparent;
+    display: inline-block;
+    height: auto; }
+    .chips__container .input-group input {
+      background-color: transparent;
+      padding: 10px 15px; }
+  .chips__container .chip {
+    display: inline-block;
+    position: relative;
+    background-color: #1abc9c;
+    color: #fff;
+    padding: 10px 30px 10px 15px;
+    border-radius: 100px;
+    margin-right: 10px;
+    margin-top: 10px; }
+    .chips__container .chip span {
+      position: absolute;
+      background: url(../images/icons/delete-button.svg);
+      top: 50%;
+      right: 6px;
+      cursor: pointer;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: translateY(-50%);
+      height: 20px;
+      width: 20px; }
+
+.input-group {
   box-sizing: border-box;
   width: 300px;
   height: 60px;
   position: relative;
   border: 1px solid #dadada;
   border-radius: 3px;
-  display: inline-block;
+  display: flex;
   flex-direction: column;
-  justify-content: center; }
-  .autocomplete__container input {
+  justify-content: center;
+  background-color: #fff; }
+  .input-group input {
     border: none;
     outline: none;
     padding: 12px 24px;
     width: 100%;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    font-family: 'Muli';
+    font-size: 20px; }
 
 ul {
   padding: 0;
   box-sizing: border-box;
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 0;
+  z-index: 10;
   display: block;
   width: 100%;
   border: 1px solid #dadada;
   border-top: none;
-  margin: 0; }
+  background-color: #fff;
+  font-family: 'Muli';
+  font-size: 18px;
+  max-height: 400px;
+  overflow-y: auto; }
   ul li {
     cursor: pointer;
     list-style: none;
     padding: 10px 18px;
-    border-bottom: 1px solid #dadada; }
+    border-bottom: 1px solid #dadada;
+    color: #798ca7; }
     ul li:hover {
-      background-color: #eee; }
+      background-color: #42a5f5;
+      color: #fff; }
+    ul li b {
+      font-weight: 700; }
 
 .error {
   border-color: red; }

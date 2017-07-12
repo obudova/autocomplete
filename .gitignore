@@ -1,3 +1,5 @@
 .idea
 css/.sass-cache
 css/style.css.map
+dist
+node_modules

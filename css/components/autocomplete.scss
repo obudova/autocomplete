@@ -1,0 +1,101 @@
+.autocomplete__container{
+  display: inline-block;
+  margin-right: 65px;
+}
+.chips__container{
+  display: inline-block;
+  .input-group{
+    border:none;
+    border-bottom: 1px solid #dadada;
+    background-color: transparent;
+    display: inline-block;
+    height: auto;
+    input{
+      background-color: transparent;
+      padding: 10px 15px;
+    }
+  }
+  .chip{
+    display: inline-block;
+    position: relative;
+    background-color: $sea-green;
+    color: #fff;
+    padding: 10px 30px 10px 15px;
+    border-radius: 100px;
+    margin-right: 10px;
+    margin-top: 10px;
+    span{
+      position: absolute;
+      background: url(../images/icons/delete-button.svg);
+      top: 50%;
+      right: 6px;
+      cursor: pointer;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: translateY(-50%);
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+.input-group{
+  box-sizing: border-box;
+  width: 300px;
+  height: 60px;
+  position: relative;
+  border: 1px solid #dadada;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  input{
+    border: none;
+    outline: none;
+    padding: 12px 24px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Muli';
+    font-size: 20px;
+
+  }
+
+}
+ul{
+  padding: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top:110%;
+  left: 0;
+  z-index: 10;
+  display: block;
+  width: 100%;
+  border: 1px solid #dadada;
+  border-top:none;
+  background-color: #fff;
+  font-family: 'Muli';
+  font-size: 18px;
+  max-height: 400px;
+  overflow-y: auto;
+  li{
+    cursor: pointer;
+    list-style: none;
+    padding: 10px 18px;
+    border-bottom: 1px solid #dadada;
+    color: #798ca7;
+    &:hover{
+      background-color: $blue;
+      color: #fff;
+    }
+    b{
+      font-weight:700;
+    }
+  }
+}
+.error{
+  border-color: red;
+  ul{
+    text-align: center;
+    padding: 10px 25px;
+  }
+}

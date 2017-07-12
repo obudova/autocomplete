@@ -2,13 +2,11 @@ const defaultOptions = {
     amountOfSuggestions: 5,
     notFoundText: 'Country is not found'
 };
-
-class Autocomplete{
-    constructor(data, selector, options){
-        this.input = document.querySelector(selector);
+ class Autocomplete{
+    constructor(data, node, options){
         this.data = data;
-        this.list = document.createElement('ul');
         this.option=Object.assign({},defaultOptions, options);
+        this.input = node;
         this._isOpen=false;
         this.init();
     }
@@ -21,14 +19,17 @@ class Autocomplete{
             this.input.parentNode.appendChild(this.list);
         }else {
             this._isOpen=false;
+            if(this.input.nextSibling){
+                this.input.nextSibling.remove();
+            }
+
         }
     }
     init(){
+        this.list = document.createElement('ul');
         this.input.addEventListener('input', this.onInput.bind(this));
         this.input.addEventListener('focus', this.onFocus.bind(this));
-        document.addEventListener('click', (event)=>{
-            this.onClick(event);
-        })
+        document.addEventListener('click',  this.onClick.bind(this));
     }
     inputIsEmpty(){
         return  this.input.value==="";
@@ -39,14 +40,15 @@ class Autocomplete{
         })
     }
     refreshResults(){
+        if(this.input.parentNode.classList.contains('error')){
+            this.input.parentNode.classList.remove('error');
+        }
         this.list.innerHTML="";
-        this.list.parentNode.classList.remove('error');
+
     }
     createResult(item){
         let li = document.createElement('li');
-        li.addEventListener('click' , (event)=> {
-            this.onListItemClick(event);
-        });
+        li.addEventListener('click' ,this.onListItemClick.bind(this));
         li.innerHTML=item;
         this.list.appendChild(li);
     }
@@ -85,13 +87,15 @@ class Autocomplete{
     }
     onListItemClick(e){
         let value = e.srcElement.innerHTML.replace(/<\/?[^>]+>/g,'');
+        this.isOpen=false;
+        this.refreshResults();
         this.input.value=value;
         alert(value);
     }
     onClick(e){
-        let elem = e.target.parentNode;
+        let elem = e.target;
         let isUnderAutomplete = false;
-        while (elem.parentNode){
+        while (elem.parentNode!=null && elem.parentNode!=undefined){
             if(elem.classList.contains("autocomplete__container")){
                 // console.log('autocomplete');
                 isUnderAutomplete=true;

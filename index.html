@@ -6,16 +6,34 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Autocomplete component</title>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="autocomplete__container">
-        <input type="text" class="autocomplete" placeholder="Type a country">
+<div class="component-library">
+    <div class="container">
+        <h3>01. Autocomplete</h3>
+        <div class="autocomplete__container">
+            <div class="input-group">
+                <input type="text" class="autocomplete" placeholder="Type a country">
+            </div>
+        </div>
+        <div class="autocomplete__container">
+            <div class="input-group">
+                <input type="text" class="autocomplete2" placeholder="Type a country">
+            </div>
+        </div>
+        <h3>02. Chips</h3>
+        <div class="chips__container autocomplete__container">
+            <div class="input-group">
+                <input type="text" class="chips" autofocus placeholder="Enter a country..">
+            </div>
+        </div>
     </div>
-    <div class="autocomplete__container">
-        <input type="text" class="autocomplete2" placeholder="Type a country">
-    </div>
-    <script src="js/autocomplete.js"></script>
-    <script src="js/main.js"></script>
+</div>
+
+    <script src="dist/autocomplete.js"></script>
+    <script src="dist/chips.js"></script>
+    <script src="dist/main.js"></script>
 </body>
 </html>
