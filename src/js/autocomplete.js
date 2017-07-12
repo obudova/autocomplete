@@ -2,7 +2,7 @@ const defaultOptions = {
     amountOfSuggestions: 5,
     notFoundText: 'Country is not found'
 };
- class Autocomplete{
+export default class Autocomplete{
     constructor(data, node, options){
         this.data = data;
         this.option=Object.assign({},defaultOptions, options);

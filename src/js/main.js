@@ -25,3 +25,4 @@ let data,
             }
         })
     });
+export default promise;

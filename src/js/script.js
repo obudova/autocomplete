@@ -1,2 +1,4 @@
-import {promise} from 'main';
-import chips from 'chips'
+import Chips from './chips';
+import Autocomplete from './autocomplete';
+import promise from './main';
+
