@@ -1,3 +1,5 @@
+import Autocomplete from './autocomplete';
+import Chips from './chips';
 let data,
     input = document.querySelector("input.autocomplete"),
     input2 = document.querySelector("input.autocomplete2"),
@@ -25,4 +27,4 @@ let data,
             }
         })
     });
-export default promise;
+

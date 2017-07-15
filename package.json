@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src/js -d dist --presets es2015",
     "watch": "babel src/js -d dist --presets es2015 -w",
-    "browserify": "browserify dist/script.js -o dist/bundle.js"
+    "browserify": "browserify dist/main.js -o dist/bundle.js"
   },
   "repository": {
     "type": "git",
