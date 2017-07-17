@@ -2,9 +2,13 @@ const defaultOptions = {
     amountOfSuggestions: 5,
     notFoundText: 'Country is not found'
 };
+const spinnerTemplate  = `
+     <div class="spinner var1"></div>
+`;
 export default class Autocomplete{
-    constructor(data, node, options){
-        this.data = data;
+    constructor(url, node, options){
+        this.url = url;
+        this.data = null;
         this.option=Object.assign({},defaultOptions, options);
         this.input = node;
         this._isOpen=false;
@@ -22,7 +26,6 @@ export default class Autocomplete{
             if(this.input.nextSibling){
                 this.input.nextSibling.remove();
             }
-
         }
     }
     init(){
@@ -53,6 +56,7 @@ export default class Autocomplete{
         this.list.appendChild(li);
     }
     onInput(){
+        console.log('oninput');
         this.isOpen=true;
         this.refreshResults();
         if(this.inputIsEmpty()){
@@ -79,10 +83,24 @@ export default class Autocomplete{
     onFocus(){
         console.log('Yea focus');
         this.isOpen=true;
-        if(this.inputIsEmpty()){
-            this.printAllData();
+        const promise = fetch(this.url, {
+            mode: 'cors'
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((result) => {
+                this.data = Object.keys(result).map(key => result[key]);
+            });
+
+        if(this.data){
+            if(this.inputIsEmpty()){
+                this.printAllData();
+            }else {
+                this.onInput();
+            }
         }else {
-            this.onInput();
+            this.list.innerHTML = spinnerTemplate;
         }
     }
     onListItemClick(e){
