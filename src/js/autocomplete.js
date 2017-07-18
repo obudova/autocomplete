@@ -89,11 +89,7 @@ class Autocomplete{
         console.log('Yea focus');
         this.isOpen=true;
         if(this.data){
-            if(this.inputIsEmpty()){
-                this.printAllData();
-            }else {
-                this.onInput();
-            }
+            this.decideOutput();
         }else{
             console.log('No Data');
             this.list.classList.add('flexbox-center');
@@ -108,14 +104,16 @@ class Autocomplete{
                 .then((result) => {
                     this.data = Object.keys(result).map(key => result[key]);
                     this.refreshResults();
-                    if(this.inputIsEmpty()){
-                        this.printAllData();
-                    }else {
-                        this.onInput();
-                    }
+                    this.decideOutput();
                 });
         }
-
+    decideOutput(){
+        if(this.inputIsEmpty()){
+            this.printAllData();
+        }else {
+            this.onInput();
+        }
+    }
     onListItemClick(e){
         let value = e.srcElement.innerHTML.replace(/<\/?[^>]+>/g,'');
         this.isOpen=false;
