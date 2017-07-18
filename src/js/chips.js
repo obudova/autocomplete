@@ -1,9 +1,9 @@
-import Autocomplete from './autocomplete';
-const defaultOptions = {
-    amountOfSuggestions: 5,
-    notFoundText: 'Country is not found'
-};
- export default class Chips extends Autocomplete{
+// import Autocomplete from './autocomplete';
+// const defaultOptions = {
+//     amountOfSuggestions: 5,
+//     notFoundText: 'Country is not found'
+// };
+class Chips extends Autocomplete{
     constructor(data, selector, options){
         super(data, selector, options);
         this.resultArr=[];

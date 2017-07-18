@@ -177,6 +177,13 @@ ul {
     ul li b {
       font-weight: 700; }
 
+.flexbox-center {
+  min-height: 95px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
 .error {
   border-color: red; }
   .error ul {

@@ -5,7 +5,7 @@ const defaultOptions = {
 const spinnerTemplate  = `
      <div class="spinner var1"></div>
 `;
-export default class Autocomplete{
+class Autocomplete{
     constructor(url, node, options){
         this.url = url;
         this.data = null;
@@ -46,6 +46,9 @@ export default class Autocomplete{
         if(this.input.parentNode.classList.contains('error')){
             this.input.parentNode.classList.remove('error');
         }
+        if(this.list.classList.contains('flexbox-center')){
+            this.list.classList.remove('flexbox-center');
+        }
         this.list.innerHTML="";
 
     }
@@ -56,53 +59,63 @@ export default class Autocomplete{
         this.list.appendChild(li);
     }
     onInput(){
-        console.log('oninput');
-        this.isOpen=true;
-        this.refreshResults();
-        if(this.inputIsEmpty()){
-            this.printAllData();
-        }else{
-            const value = this.input.value;
-            const regexp = new RegExp(`(${value})`, 'gi');
-            let result = this.data.filter((item)=>{
-                return  item.match(regexp);
-            });
-            if(result.length){
-                const listData = result.map((item)=>{
-                    return item.replace(regexp,'<b>$1</b>');
-                });
-                listData.slice(0, this.option.amountOfSuggestions).map( item =>{
-                    this.createResult(item);
-                })
+        if(this.data){
+            this.isOpen=true;
+            this.refreshResults();
+            if(this.inputIsEmpty()){
+                this.printAllData();
             }else{
-                this.list.parentNode.classList.add('error');
-                this.list.innerHTML=this.option.notFoundText;
+                const value = this.input.value;
+                const regexp = new RegExp(`(${value})`, 'gi');
+                let result = this.data.filter((item)=>{
+                    return  item.match(regexp);
+                });
+                if(result.length){
+                    const listData = result.map((item)=>{
+                        return item.replace(regexp,'<b>$1</b>');
+                    });
+                    listData.slice(0, this.option.amountOfSuggestions).map( item =>{
+                        this.createResult(item);
+                    })
+                }else{
+                    this.list.parentNode.classList.add('error');
+                    this.list.innerHTML=this.option.notFoundText;
+                }
             }
         }
+
     }
     onFocus(){
         console.log('Yea focus');
         this.isOpen=true;
-        const promise = fetch(this.url, {
-            mode: 'cors'
-        })
-            .then((response) => {
-                return response.json()
-            })
-            .then((result) => {
-                this.data = Object.keys(result).map(key => result[key]);
-            });
-
         if(this.data){
             if(this.inputIsEmpty()){
                 this.printAllData();
             }else {
                 this.onInput();
             }
-        }else {
+        }else{
+            console.log('No Data');
+            this.list.classList.add('flexbox-center');
             this.list.innerHTML = spinnerTemplate;
         }
-    }
+            const promise = fetch(this.url, {
+                mode: 'cors'
+            })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((result) => {
+                    this.data = Object.keys(result).map(key => result[key]);
+                    this.refreshResults();
+                    if(this.inputIsEmpty()){
+                        this.printAllData();
+                    }else {
+                        this.onInput();
+                    }
+                });
+        }
+
     onListItemClick(e){
         let value = e.srcElement.innerHTML.replace(/<\/?[^>]+>/g,'');
         this.isOpen=false;

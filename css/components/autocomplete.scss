@@ -92,6 +92,13 @@ ul{
     }
   }
 }
+.flexbox-center{
+  min-height: 95px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .error{
   border-color: red;
   ul{
